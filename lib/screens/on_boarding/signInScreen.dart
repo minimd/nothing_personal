@@ -56,16 +56,13 @@ class SignInScreen extends StatelessWidget {
             );
           },
           child: const Glassyfield(
-            alignment: Alignment.center,
-            width: 184,
-            height: 64,
-            borderColor: Color.fromARGB(255, 0, 47, 152),
-            text: "تسجيل الدخول",
-            style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontFamily: 'lamasans',
-                fontSize: 20),
-          ),
+              alignment: Alignment.center,
+              width: 184,
+              height: 64,
+              borderColor: Color.fromARGB(255, 0, 47, 152),
+              text: "تسجيل الدخول",
+              fontWeight: FontWeight.w500,
+              fontSize: 20),
         ),
       )
     ]);

@@ -12,7 +12,8 @@ class Glassyfield extends StatelessWidget {
       this.alignment,
       this.stroke,
       this.fillColor,
-      this.style,
+      this.fontSize,
+      this.fontWeight,
       this.text,
       this.child});
   final double? width;
@@ -25,7 +26,8 @@ class Glassyfield extends StatelessWidget {
   final Alignment? alignment;
   final Widget? child;
   final String? text;
-  final TextStyle? style;
+  final double? fontSize;
+  final FontWeight? fontWeight;
 
   @override
   Widget build(BuildContext context) {
@@ -39,31 +41,41 @@ class Glassyfield extends StatelessWidget {
       alignment: alignment ?? Alignment.centerRight,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: child?? TextLama(text: text, style: style),
+        child: child ??
+            TextLama(
+              text: text,
+              fontSize: fontSize,
+              fontWeight: fontWeight,
+            ),
       ),
     );
   }
 }
 
 class TextLama extends StatelessWidget {
-  const TextLama({
-    super.key,
-    required this.text,
-     this.style,
-  });
+  const TextLama(
+      {super.key,
+      required this.text,
+      this.fontSize,
+      this.fontWeight,
+      this.color});
 
   final String? text;
-  final TextStyle? style;
+  final double? fontSize;
+  final FontWeight? fontWeight;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text!,
-      style: style ??
-          const TextStyle(
-              fontFamily: 'lamasans',
-              fontSize: 20,
-              fontWeight: FontWeight.w300),
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: 'lamasans',
+        fontSize: fontSize ?? 20,
+        fontWeight: fontWeight ?? FontWeight.w300,
+        color: color ?? Colors.black,
+      ),
     );
   }
 }

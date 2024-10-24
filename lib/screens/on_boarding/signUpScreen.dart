@@ -135,10 +135,8 @@ class Signupscreen extends StatelessWidget {
                   children: [
                     TextLama(
                       text: "الهوية او البطاقة الموحدة - وجه",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontFamily: 'lamasans',
-                          fontWeight: FontWeight.w300),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w300,
                     ),
                   ],
                 ),
@@ -160,10 +158,8 @@ class Signupscreen extends StatelessWidget {
                   children: [
                     TextLama(
                       text: "الهوية او البطاقة الموحدة - ظهر",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontFamily: 'lamasans',
-                          fontWeight: FontWeight.w300),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w300,
                     ),
                   ],
                 ),
@@ -185,10 +181,8 @@ class Signupscreen extends StatelessWidget {
                   children: [
                     TextLama(
                       text: "بطاقة السكن - وجه",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontFamily: 'lamasans',
-                          fontWeight: FontWeight.w300),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w300,
                     ),
                   ],
                 ),
@@ -210,10 +204,8 @@ class Signupscreen extends StatelessWidget {
                   children: [
                     TextLama(
                       text: "بطاقة السكن - ظهر",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontFamily: 'lamasans',
-                          fontWeight: FontWeight.w300),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w300,
                     ),
                   ],
                 ),
@@ -255,10 +247,8 @@ class Signupscreen extends StatelessWidget {
           height: 64,
           borderColor: Color.fromARGB(255, 0, 47, 152),
           text: "تسجيل الدخول",
-          style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontFamily: 'lamasans',
-              fontSize: 20),
+          fontWeight: FontWeight.w500,
+          fontSize: 20,
         ),
       )
     ]);

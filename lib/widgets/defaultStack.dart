@@ -19,7 +19,7 @@ class DefaultStack extends StatelessWidget {
               textDirection: TextDirection.rtl,
               child: SafeArea(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 45, 30, 0),
+                  padding: const EdgeInsets.fromLTRB(20, 35, 20, 0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: children,

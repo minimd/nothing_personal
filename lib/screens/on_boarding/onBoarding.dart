@@ -11,6 +11,9 @@ class OnBoardingView extends StatelessWidget {
     return DefaultStack(
       children: [
         const SizedBox(
+          height: 54,
+        ),
+        const SizedBox(
           width: double.infinity,
           child: Text(
             'هلا بيك  بالوسيط',
