@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_tilt/flutter_tilt.dart';
+import 'package:rive_app/screens/ordersScreen.dart';
 
 import 'package:rive_app/widgets/defaultStack.dart';
 import 'package:rive_app/widgets/glassyContainer.dart';
@@ -17,20 +17,26 @@ class MainScreen extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            glassyContainer(
-              height: 54,
-              width: 215,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: SvgPicture.asset('assets/svg/hamburger.svg'),
-                  ),
-                  Image.asset(
-                    'assets/svg/logo.png',
-                    width: 110,
-                  ),
-                ],
+            Hero(
+              tag: 'header',
+              transitionOnUserGestures: true,
+              child: glassyContainer(
+                height: 54,
+                width: 215,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  textDirection: TextDirection.ltr,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Image.asset(
+                        'assets/svg/logo.png',
+                        width: 110,
+                      ),
+                    ),
+                    SvgPicture.asset('assets/svg/hamburger.svg'),
+                  ],
+                ),
               ),
             ),
             Row(
@@ -42,9 +48,12 @@ class MainScreen extends StatelessWidget {
                 const SizedBox(
                   width: 6,
                 ),
-                glassyContainer(
-                  height: 54,
-                  child: SvgPicture.asset('assets/svg/reload.svg'),
+                Hero(
+                  tag: 'back',
+                  child: glassyContainer(
+                    height: 54,
+                    child: SvgPicture.asset('assets/svg/reload.svg'),
+                  ),
                 )
               ],
             ),
@@ -61,25 +70,31 @@ class MainScreen extends StatelessWidget {
         const SizedBox(
           height: 24,
         ),
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           textDirection: TextDirection.ltr,
           children: [
-            OrdersType(
+            const OrdersType(
               type: " الطلبات الراجعة",
               count: 0,
             ),
-            OrdersType(
+            const OrdersType(
               type: " قيد التوصيل",
               count: 3,
             ),
-            OrdersType(
+            const OrdersType(
               type: "الطلبات المنشأة",
               count: 2,
             ),
             OrdersType(
               type: "جميع االطلبات",
               count: 12,
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Ordersscreen()));
+              },
             ),
           ],
         ),
@@ -110,10 +125,10 @@ class MainScreen extends StatelessWidget {
           height: 36,
         ),
         Image.asset('assets/svg/carouselPlaceholder.png'),
-        const SizedBox(
-          height: 36,
-        ),
-        glassyContainer(
+        const Spacer(),
+        Hero(
+          tag: 'label',
+          child: glassyContainer(
             height: 72,
             child: Center(
               child: Column(
@@ -130,7 +145,10 @@ class MainScreen extends StatelessWidget {
                   )
                 ],
               ),
-            ))
+            ),
+          ),
+        ),
+        const Spacer()
       ],
     );
   }

@@ -10,6 +10,7 @@ class OrdersType extends StatelessWidget {
     required this.type,
     this.fontWieght,
     this.fontColor,
+    this.onTap,
     super.key,
   });
   final String? imageUrl;
@@ -17,6 +18,7 @@ class OrdersType extends StatelessWidget {
   final String? type;
   final FontWeight? fontWieght;
   final Color? fontColor;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class OrdersType extends StatelessWidget {
         glassyContainer(
           height: 66,
           borderRadius: 2.5,
+          onTap: onTap ?? () {},
           child: Tilt(
             tiltConfig: const TiltConfig(
               angle: 5,

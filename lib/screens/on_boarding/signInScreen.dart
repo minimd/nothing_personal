@@ -4,6 +4,7 @@ import 'package:flutter_tilt/flutter_tilt.dart';
 import 'package:rive_app/screens/mainScreen.dart';
 import 'package:rive_app/widgets/backButton.dart';
 import 'package:rive_app/widgets/defaultStack.dart';
+import 'package:rive_app/widgets/glassyContainer.dart';
 import 'package:rive_app/widgets/glassyField.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -33,36 +34,33 @@ class SignInScreen extends StatelessWidget {
       const SizedBox(
         height: 16,
       ),
-      const Tilt(
-        child: Glassyfield(text: 'رقم الهاتف'),
-      ),
+      const Glassyfield(text: 'رقم الهاتف'),
       const SizedBox(
         height: 16,
       ),
-      const Tilt(
-        child: Glassyfield(
-          text: 'كلمة المرور',
-        ),
+      const Glassyfield(
+        text: 'كلمة المرور',
       ),
       const SizedBox(
         height: 32,
       ),
       Tilt(
-        child: GestureDetector(
+        child: glassyContainer(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MainScreen()),
-            );
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const MainScreen()));
           },
-          child: const Glassyfield(
-              alignment: Alignment.center,
-              width: 184,
-              height: 64,
-              borderColor: Color.fromARGB(255, 0, 47, 152),
-              text: "تسجيل الدخول",
-              fontWeight: FontWeight.w500,
-              fontSize: 20),
+          alignment: Alignment.center,
+          width: 184,
+          borderRadius: 12,
+          height: 64,
+          borderColor: const Color.fromARGB(255, 0, 47, 152),
+          stroke: 2,
+          child: const TextLama(
+            fontWeight: FontWeight.normal,
+            text: 'تسجيل الدخول',
+            color: Colors.black,
+          ),
         ),
       )
     ]);

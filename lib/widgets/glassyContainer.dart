@@ -15,6 +15,7 @@ class glassyContainer extends StatelessWidget {
       this.alignment,
       this.stroke,
       this.fillColor,
+      this.onTap,
       required this.child});
   final double? width;
   final double height;
@@ -25,31 +26,37 @@ class glassyContainer extends StatelessWidget {
   final double? blur;
   final Alignment? alignment;
   final Widget child;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width ?? height,
-      height: height,
-      alignment: Alignment.center,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(borderRadius ?? height / 2),
-        // this prevents the backdrop to be applied on all the screen
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: blur ?? 8, sigmaY: blur ?? 8),
-          child: Container(
-            decoration: BoxDecoration(
-                color: fillColor ?? const Color.fromRGBO(209, 209, 209, 0.1),
-                borderRadius: BorderRadius.circular(borderRadius ?? height / 2),
-                border: Border.all(
-                  color: borderColor ?? const Color.fromRGBO(216, 216, 216, 1),
-                  width: stroke ?? 1,
-                )),
-            width: width ?? height,
-            height: height,
-            child: Align(
-              alignment: alignment ?? Alignment.center,
-              child: child,
+    return GestureDetector(
+      onTap: onTap?? (){},
+      child: Container(
+        width: width ?? height,
+        height: height,
+        alignment: Alignment.center,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(borderRadius ?? height / 2),
+          // this prevents the backdrop to be applied on all the screen
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: blur ?? 8, sigmaY: blur ?? 8),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: fillColor ?? const Color.fromRGBO(209, 209, 209, 0.1),
+                  borderRadius:
+                      BorderRadius.circular(borderRadius ?? height / 2),
+                  border: Border.all(
+                    color:
+                        borderColor ?? const Color.fromRGBO(216, 216, 216, 1),
+                    width: stroke ?? 1,
+                  )),
+              width: width ?? height,
+              height: height,
+              child: Align(
+                alignment: alignment ?? Alignment.center,
+                child: child,
+              ),
             ),
           ),
         ),
