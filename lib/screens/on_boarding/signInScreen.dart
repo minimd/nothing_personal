@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tilt/flutter_tilt.dart';
-import 'package:rive_app/screens/mainScreen.dart';
+import 'package:rive_app/screens/MainScreen.dart';
 import 'package:rive_app/widgets/backButton.dart';
 import 'package:rive_app/widgets/defaultStack.dart';
 import 'package:rive_app/widgets/glassyContainer.dart';

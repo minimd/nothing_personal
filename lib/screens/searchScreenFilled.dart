@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:rive_app/screens/singleOrderScreen.dart';
 import 'package:rive_app/screens/singleOrderScreenError.dart';
 import 'package:rive_app/widgets/backButton.dart';
@@ -8,8 +9,8 @@ import 'package:rive_app/widgets/glassyField.dart';
 import 'package:rive_app/widgets/orderTab.dart';
 import 'package:rive_app/widgets/storyPoint.dart';
 
-class Ordersscreen extends StatelessWidget {
-  const Ordersscreen({super.key});
+class Searchscreenfilled extends StatelessWidget {
+  const Searchscreenfilled({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +19,37 @@ class Ordersscreen extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(
-              width: 54,
-            ),
-            Hero(
-              tag: 'header',
-              child: glassyContainer(
+            glassyContainer(
                 height: 54,
-                width: 170,
-                child: Image.asset(
-                  'assets/svg/logo.png',
-                  width: 110,
-                ),
-              ),
-            ),
+                width: 230,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    textDirection: TextDirection.ltr,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SvgPicture.asset(
+                        'assets/svg/searchList.svg',
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      TextLama(
+                        text: '0770355448',
+                        color: Color(0xff002F98),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: SvgPicture.asset(
+                          'assets/svg/cancel.svg',
+                        ),
+                      )
+                    ],
+                  ),
+                )),
             const Hero(tag: 'back', child: backButton())
           ],
         ),
@@ -39,7 +57,7 @@ class Ordersscreen extends StatelessWidget {
           height: 32,
         ),
         const TextLama(
-          text: 'الطلبات',
+          text: 'البحث',
           fontSize: 20,
           fontWeight: FontWeight.bold,
         ),

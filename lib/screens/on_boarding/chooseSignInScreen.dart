@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tilt/flutter_tilt.dart';
-import 'package:rive_app/screens/mainScreen.dart';
+import 'package:rive_app/screens/MainScreen.dart';
 import 'package:rive_app/screens/on_boarding/signInScreen.dart';
 import 'package:rive_app/screens/on_boarding/signUpScreen.dart';
 import 'package:rive_app/widgets/backButton.dart';

@@ -8,6 +8,7 @@ class Storypoint extends StatelessWidget {
       required this.date,
       this.isActive = false,
       this.isError = false,
+      this.fontColor = Colors.white,
       super.key});
 
   final int pointNumber;
@@ -15,6 +16,7 @@ class Storypoint extends StatelessWidget {
   final String date;
   final bool isActive;
   final bool isError;
+  final Color fontColor;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,8 @@ class Storypoint extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
             border: isActive
-                ? Border.all(color: const Color(0xffD0233F), width: 2)
+                ? Border.all(
+                    color: const Color.fromARGB(255, 35, 208, 41), width: 2)
                 : Border.all(color: Colors.transparent),
             color: isError ? const Color(0xffD0233F) : Colors.white,
           ),
@@ -44,23 +47,28 @@ class Storypoint extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-        TextLama(
-          text: status,
-          color: Colors.white,
-          fontSize: 10,
-          fontWeight: FontWeight.w500,
+        Container(
+          height: 60,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextLama(
+                text: status,
+                fontSize: 10,
+                fontWeight: FontWeight.w500,
+                color: fontColor,
+              ),
+              TextLama(
+                text: date,
+                color: fontColor,
+                fontSize: 10,
+                fontWeight: FontWeight.w500,
+              ),
+            ],
+          ),
         ),
         const SizedBox(
-          height: 6,
-        ),
-        TextLama(
-          text: date,
-          color: Colors.white,
-          fontSize: 10,
-          fontWeight: FontWeight.w500,
-        ),
-        const SizedBox(
-          height: 6,
+          height: 8,
         )
       ]),
     );

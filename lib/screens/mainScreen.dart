@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rive_app/screens/ordersScreen.dart';
+import 'package:rive_app/screens/searchScreenEmpty.dart';
 
 import 'package:rive_app/widgets/defaultStack.dart';
 import 'package:rive_app/widgets/glassyContainer.dart';
@@ -22,17 +23,14 @@ class MainScreen extends StatelessWidget {
               transitionOnUserGestures: true,
               child: glassyContainer(
                 height: 54,
-                width: 215,
+                width: MediaQuery.sizeOf(context).width * 0.55,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   textDirection: TextDirection.ltr,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Image.asset(
-                        'assets/svg/logo.png',
-                        width: 110,
-                      ),
+                    Image.asset(
+                      'assets/svg/logo.png',
+                      width: MediaQuery.sizeOf(context).width * 0.3,
                     ),
                     SvgPicture.asset('assets/svg/hamburger.svg'),
                   ],
@@ -44,6 +42,12 @@ class MainScreen extends StatelessWidget {
                 glassyContainer(
                   height: 54,
                   child: SvgPicture.asset('assets/svg/search.svg'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Searchscreenempty()));
+                  },
                 ),
                 const SizedBox(
                   width: 6,
@@ -98,9 +102,7 @@ class MainScreen extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(
-          height: 24,
-        ),
+        const Spacer(),
         const Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           textDirection: TextDirection.ltr,
@@ -121,9 +123,7 @@ class MainScreen extends StatelessWidget {
             OrderstypeNew()
           ],
         ),
-        const SizedBox(
-          height: 36,
-        ),
+        const Spacer(),
         Image.asset('assets/svg/carouselPlaceholder.png'),
         const Spacer(),
         Hero(
