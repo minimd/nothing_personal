@@ -17,35 +17,38 @@ class Searchscreenempty extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            glassyContainer(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const Searchscreenfilled()));
-                },
-                height: 54,
-                width: 230,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Row(
-                    textDirection: TextDirection.ltr,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SvgPicture.asset(
-                        'assets/svg/searchList.svg',
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      const TextLama(
-                        text: '',
-                        color: Color(0xff002F98),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      const Spacer(),
-                    ],
-                  ),
-                )),
+            Hero(
+              tag: 'header',
+              child: glassyContainer(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const Searchscreenfilled()));
+                  },
+                  height: 54,
+                  width: 230,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Row(
+                      textDirection: TextDirection.ltr,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/svg/searchList.svg',
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        const TextLama(
+                          text: '',
+                          color: Color(0xff002F98),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        const Spacer(),
+                      ],
+                    ),
+                  )),
+            ),
             const Hero(tag: 'back', child: backButton())
           ],
         ),

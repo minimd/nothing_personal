@@ -27,7 +27,7 @@ class Ordertab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap??(){},
+      onTap: onTap ?? () {},
       child: Container(
         width: double.infinity,
         height: 90,
@@ -61,84 +61,83 @@ class Ordertab extends StatelessWidget {
                 ]),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 2.0),
-                  child: Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            TextLama(
-                              text: recieverName,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          TextLama(
+                            text: recieverName,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          TextLama(
+                            text: recieverNumber,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w400,
+                            color: const Color.fromARGB(255, 166, 166, 166),
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          TextLama(
+                            text: recieverCity,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: const Color.fromRGBO(0, 47, 152, 1),
+                          ),
+                          const TextLama(
+                            text: ', ',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: Color.fromRGBO(0, 47, 152, 1),
+                          ),
+                          TextLama(
+                            text: recieverAddress,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: const Color.fromRGBO(0, 47, 152, 1),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: orderError
+                                  ? const Color.fromARGB(10, 246, 0, 4)
+                                  : const Color.fromARGB(25, 0, 246, 82),
                             ),
-                            const SizedBox(
-                              width: 6,
-                            ),
-                            TextLama(
-                              text: recieverNumber,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w400,
-                              color: const Color.fromARGB(255, 166, 166, 166),
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            TextLama(
-                              text: recieverCity,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: const Color.fromRGBO(0, 47, 152, 1),
-                            ),
-                            const TextLama(
-                              text: ', ',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: Color.fromRGBO(0, 47, 152, 1),
-                            ),
-                            TextLama(
-                              text: recieverAddress,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: const Color.fromRGBO(0, 47, 152, 1),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: TextLama(
+                                text: orderStatus,
                                 color: orderError
-                                    ? const Color.fromARGB(10, 246, 0, 4)
-                                    : const Color.fromARGB(25, 0, 246, 82),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(2.0),
-                                child: TextLama(
-                                  text: orderStatus,
-                                  color: orderError
-                                      ? const Color(0xffAE0F11)
-                                      : const Color(0xff0fae31),
-                                  fontSize: 10,
-                                ),
+                                    ? const Color(0xffAE0F11)
+                                    : const Color(0xff0fae31),
+                                fontSize: 10,
                               ),
                             ),
-                            const SizedBox(
-                              width: 4,
-                            ),
-                            TextLama(
-                              text: orderDate,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w400,
-                              color: const Color.fromARGB(255, 166, 166, 166),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
+                          ),
+                          const SizedBox(
+                            width: 4,
+                          ),
+                          TextLama(
+                            text: orderDate,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w400,
+                            color: const Color.fromARGB(255, 166, 166, 166),
+                          )
+                        ],
+                      )
+                    ],
                   ),
                 )
               ]),

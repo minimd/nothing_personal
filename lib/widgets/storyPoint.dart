@@ -22,39 +22,35 @@ class Storypoint extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        const SizedBox(
-          height: 8,
-        ),
-        Container(
-          height: 35,
-          width: 35,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-            border: isActive
-                ? Border.all(
-                    color: const Color.fromARGB(255, 35, 208, 41), width: 2)
-                : Border.all(color: Colors.transparent),
-            color: isError ? const Color(0xffD0233F) : Colors.white,
-          ),
-          child: Center(
-            child: TextLama(
-              text: pointNumber.toString(),
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Container(
+            height: 35,
+            width: 35,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              border: isActive
+                  ? Border.all(
+                      color: const Color.fromARGB(255, 35, 208, 41), width: 2)
+                  : Border.all(color: Colors.transparent),
+              color: isError ? const Color(0xffD0233F) : Colors.white,
+            ),
+            child: Center(
+              child: TextLama(
+                text: pointNumber.toString(),
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
         ),
-        const SizedBox(
-          height: 8,
-        ),
-        Container(
-          height: 60,
+        Expanded(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextLama(
                 text: status,
-                fontSize: 10,
+                fontSize: 13,
                 fontWeight: FontWeight.w500,
                 color: fontColor,
               ),

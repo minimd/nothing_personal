@@ -126,25 +126,22 @@ class MainScreen extends StatelessWidget {
         const Spacer(),
         Image.asset('assets/svg/carouselPlaceholder.png'),
         const Spacer(),
-        Hero(
-          tag: 'label',
-          child: glassyContainer(
-            height: 72,
-            child: Center(
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  SvgPicture.asset('assets/svg/wallet.svg'),
-                  const TextLama(
-                    text: 'المحفظة',
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
-                    color: Color.fromRGBO(0, 47, 152, 1),
-                  )
-                ],
-              ),
+        glassyContainer(
+          height: 72,
+          child: Center(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 8,
+                ),
+                SvgPicture.asset('assets/svg/wallet.svg'),
+                const TextLama(
+                  text: 'المحفظة',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400,
+                  color: Color.fromRGBO(0, 47, 152, 1),
+                )
+              ],
             ),
           ),
         ),
