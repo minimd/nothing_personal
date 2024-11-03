@@ -44,24 +44,22 @@ class Storypoint extends StatelessWidget {
             ),
           ),
         ),
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextLama(
-                text: status,
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-                color: fontColor,
-              ),
-              TextLama(
-                text: date,
-                color: fontColor,
-                fontSize: 10,
-                fontWeight: FontWeight.w500,
-              ),
-            ],
-          ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            TextLama(
+              text: status,
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
+              color: fontColor,
+            ),
+            TextLama(
+              text: date,
+              color: fontColor,
+              fontSize: 10,
+              fontWeight: FontWeight.w500,
+            ),
+          ],
         ),
         const SizedBox(
           height: 8,
