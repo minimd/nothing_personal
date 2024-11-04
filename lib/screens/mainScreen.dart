@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:rive_app/screens/fu.dart';
+import 'package:rive_app/screens/navbar/accountScreen.dart';
+import 'package:rive_app/screens/navbar/financialRecordsScreen.dart';
 import 'package:rive_app/screens/ordersScreen.dart';
 import 'package:rive_app/screens/searchScreenEmpty.dart';
 import 'package:rive_app/widgets/background.dart';
 
-import 'package:rive_app/widgets/defaultStack.dart';
 import 'package:rive_app/widgets/glassyContainer.dart';
 import 'package:rive_app/widgets/glassyField.dart';
 import 'package:rive_app/widgets/ordersType.dart';
@@ -17,21 +17,31 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen>
-    with SingleTickerProviderStateMixin {
+class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   bool _isNavBarVisible = false; // Tracks if navbar is visible
-  late AnimationController _controller; // Animation controller for the slide
-  late Animation<double> _animation; // Animation to control the height
+  late AnimationController _controller; //this is for the whole slide
+  late AnimationController _stackController; //  this controls the menu itself
+  late Animation<double> _animation; //this is for the whole slide
+  late Animation<double> _StackAnimation; // this controls the menu itself
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 1),
+      vsync: this,
+      reverseDuration: const Duration(milliseconds: 300),
+    );
+    _stackController = AnimationController(
+      duration: const Duration(milliseconds: 1000),
       vsync: this,
     );
     _animation = CurvedAnimation(
       parent: _controller,
+      curve: Curves.easeInOut,
+    );
+    _StackAnimation = CurvedAnimation(
+      parent: _stackController,
       curve: Curves.easeInOut,
     );
   }
@@ -39,6 +49,7 @@ class _MainScreenState extends State<MainScreen>
   @override
   void dispose() {
     _controller.dispose();
+    _stackController.dispose();
     super.dispose();
   }
 
@@ -47,8 +58,10 @@ class _MainScreenState extends State<MainScreen>
       _isNavBarVisible = !_isNavBarVisible;
       if (_isNavBarVisible) {
         _controller.forward();
+        _stackController.forward();
       } else {
         _controller.reverse();
+        _stackController.reverse();
       }
     });
   }
@@ -211,79 +224,69 @@ class _MainScreenState extends State<MainScreen>
             ),
           ),
         ),
-        Align(
-          alignment: Alignment.topCenter,
-          child: SizeTransition(
-            sizeFactor: _animation,
-            axisAlignment: -1.0,
-            child: GestureDetector(
+        SizeTransition(
+          sizeFactor: _animation,
+          axisAlignment: -1.0,
+          child: Stack(children: [
+            GestureDetector(
               onTap: () {
                 _toggleNavBar();
               },
-              child: Container(
+              child: AnimatedOpacity(
+                opacity: _isNavBarVisible ? 1 : 0,
+                duration: const Duration(milliseconds: 200),
+                child: Container(
                   height: MediaQuery.of(context).size.height,
                   color: const Color.fromARGB(132, 19, 81, 133),
                   alignment: Alignment.topCenter,
-                  child: Container(
-                    height: 280,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: const Color(0xffD0233F), width: 2),
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(35),
-                          bottomRight: Radius.circular(35),
-                        ),
-                        color: Colors.white),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 45,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            const SizedBox(
-                              width: 58,
-                            ),
-                            SvgPicture.asset(
-                              'assets/svg/logo_settled.svg',
-                              width: 90,
-                            ),
-                            Column(
-                              children: [
-                                Container(
-                                  alignment: Alignment.center,
-                                  width: 58,
-                                  height: 58,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      border: Border.all(
-                                          color: const Color(0xff002F98))),
-                                  child: SvgPicture.asset(
-                                      'assets/svg/Call_Ringing.svg'),
-                                ),
-                                const SizedBox(
-                                  height: 6,
-                                ),
-                                const TextLama(
-                                  text: "اتصل بنا",
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
+                ),
+              ),
+            ),
+            SizeTransition(
+              sizeFactor: _StackAnimation,
+              axisAlignment: -1.0,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  height: 380,
+                  width: MediaQuery.of(context).size.width * 0.95,
+                  decoration: BoxDecoration(
+                      border:
+                          Border.all(color: const Color(0xffD0233F), width: 2),
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(35),
+                        bottomRight: Radius.circular(35),
+                      ),
+                      color: Colors.white),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 55,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          SvgPicture.asset(
+                            'assets/svg/logo_settled.svg',
+                            width: 100,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 32,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const Accountscreen(),
+                              ));
+                            },
+                            child: SizedBox(
+                              width: 100,
                               child: Column(
                                 children: [
                                   Container(
@@ -308,7 +311,16 @@ class _MainScreenState extends State<MainScreen>
                                 ],
                               ),
                             ),
-                            Expanded(
+                          ),
+                          SizedBox(
+                            width: 100,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      const Financialrecordsscreen(),
+                                ));
+                              },
                               child: Column(
                                 children: [
                                   Container(
@@ -334,40 +346,14 @@ class _MainScreenState extends State<MainScreen>
                                 ],
                               ),
                             ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      width: 58,
-                                      height: 58,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          border: Border.all(
-                                              color: const Color(0xff002F98))),
-                                      child: SvgPicture.asset(
-                                          'assets/svg/pin.svg'),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 6,
-                                  ),
-                                  const TextLama(
-                                    text: "فروع الشركة",
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w600,
-                                  )
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  Container(
+                          ),
+                          SizedBox(
+                            width: 100,
+                            child: Column(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: Container(
                                     alignment: Alignment.center,
                                     width: 58,
                                     height: 58,
@@ -375,28 +361,96 @@ class _MainScreenState extends State<MainScreen>
                                         borderRadius: BorderRadius.circular(50),
                                         border: Border.all(
                                             color: const Color(0xff002F98))),
-                                    child: SvgPicture.asset(
-                                        'assets/svg/Sign-out.svg'),
+                                    child:
+                                        SvgPicture.asset('assets/svg/pin.svg'),
                                   ),
-                                  const SizedBox(
-                                    height: 6,
-                                  ),
-                                  const TextLama(
-                                    text: "تسجيل الخروج",
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w600,
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  )),
-            ),
-          ),
+                                ),
+                                const SizedBox(
+                                  height: 6,
+                                ),
+                                const TextLama(
+                                  text: "فروع الشركة",
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          SizedBox(
+                            //using sized box so we can make each part square to the other so the row divides them equally
+                            width: 100,
+                            child: Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.center,
+                                  width: 58,
+                                  height: 58,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      border: Border.all(
+                                          color: const Color(0xff002F98))),
+                                  child: SvgPicture.asset(
+                                      'assets/svg/Call_Ringing.svg'),
+                                ),
+                                const SizedBox(
+                                  height: 6,
+                                ),
+                                const TextLama(
+                                  text: "اتصل بنا",
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            width: 100,
+                            child: Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.center,
+                                  width: 58,
+                                  height: 58,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      border: Border.all(
+                                          color: const Color(0xff002F98))),
+                                  child: SvgPicture.asset(
+                                      'assets/svg/Sign-out.svg'),
+                                ),
+                                const SizedBox(
+                                  height: 6,
+                                ),
+                                const TextLama(
+                                  text: "تسجيل الخروج",
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                )
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            width: 100,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ]),
         ),
       ],
     ));
