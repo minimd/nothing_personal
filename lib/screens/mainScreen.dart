@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rive_app/screens/navbar/accountScreen.dart';
 import 'package:rive_app/screens/navbar/financialRecordsScreen.dart';
+import 'package:rive_app/screens/navbar/offices_locations.dart';
+import 'package:rive_app/screens/on_boarding/onBoarding.dart';
 import 'package:rive_app/screens/ordersScreen.dart';
 import 'package:rive_app/screens/searchScreenEmpty.dart';
+import 'package:rive_app/screens/walletScreen.dart';
 import 'package:rive_app/widgets/background.dart';
 
 import 'package:rive_app/widgets/glassyContainer.dart';
@@ -200,6 +203,10 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                   Image.asset('assets/svg/carouselPlaceholder.png'),
                   const Spacer(),
                   glassyContainer(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const WalletScreen()));
+                    },
                     height: 72,
                     child: Center(
                       child: Column(
@@ -208,12 +215,6 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                             height: 8,
                           ),
                           SvgPicture.asset('assets/svg/wallet.svg'),
-                          const TextLama(
-                            text: 'المحفظة',
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400,
-                            color: Color.fromRGBO(0, 47, 152, 1),
-                          )
                         ],
                       ),
                     ),
@@ -352,7 +353,12 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                             child: Column(
                               children: [
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const OfficesLocations()));
+                                  },
                                   child: Container(
                                     alignment: Alignment.center,
                                     width: 58,
@@ -379,7 +385,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
                       Row(
@@ -413,34 +419,45 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                               ],
                             ),
                           ),
-                          SizedBox(
-                            width: 100,
-                            child: Column(
-                              children: [
-                                Container(
-                                  alignment: Alignment.center,
-                                  width: 58,
-                                  height: 58,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      border: Border.all(
-                                          color: const Color(0xff002F98))),
-                                  child: SvgPicture.asset(
-                                      'assets/svg/Sign-out.svg'),
-                                ),
-                                const SizedBox(
-                                  height: 6,
-                                ),
-                                const TextLama(
-                                  text: "تسجيل الخروج",
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                )
-                              ],
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const OnBoardingView()),
+                                (Route<dynamic> route) => false,
+                              );
+                            },
+                            child: SizedBox(
+                              width: 100,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    alignment: Alignment.center,
+                                    width: 58,
+                                    height: 58,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        border: Border.all(
+                                            color: const Color(0xff002F98))),
+                                    child: SvgPicture.asset(
+                                        'assets/svg/Sign-out.svg'),
+                                  ),
+                                  const SizedBox(
+                                    height: 6,
+                                  ),
+                                  const TextLama(
+                                    text: "تسجيل الخروج",
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 100,
                           )
                         ],
