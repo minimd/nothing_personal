@@ -36,11 +36,11 @@ class Glassyfield extends StatelessWidget {
       width: width ?? double.infinity,
       blur: blur ?? 2.5,
       borderRadius: borderRadius ?? 12,
-      borderColor: borderColor ?? Colors.black,
-      stroke: stroke ?? 2,
+      borderColor: borderColor ?? const Color.fromARGB(255, 122, 122, 122),
+      stroke: stroke ?? 1,
       alignment: alignment ?? Alignment.centerRight,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(right: 16.0),
         child: child ??
             TextLama(
               text: text,

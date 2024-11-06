@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:rive_app/screens/navbar/accountScreen.dart';
 import 'package:rive_app/screens/navbar/financialRecordsScreen.dart';
 import 'package:rive_app/screens/navbar/offices_locations.dart';
+import 'package:rive_app/screens/newOrderScreen.dart';
 import 'package:rive_app/screens/on_boarding/onBoarding.dart';
 import 'package:rive_app/screens/ordersScreen.dart';
 import 'package:rive_app/screens/searchScreenEmpty.dart';
@@ -179,27 +180,26 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                     ],
                   ),
                   const Spacer(),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     textDirection: TextDirection.ltr,
                     children: [
-                      OrdersType(
-                        type: 'المشاكل\n',
+                      const OrdersType(
+                        type: 'المشاكل',
                         count: 2,
                         imageUrl: 'assets/svg/boxError.png',
                       ),
-                      OrdersType(
-                        type: "الرواجع مع \n المندوب",
+                      const OrdersType(
+                        type: "الرواجع مع  المندوب",
                         count: 2,
                       ),
-                      OrdersType(
-                        type: "الرواجع مع \nمندوب التوصيل",
+                      const OrdersType(
+                        type: "رواجع مندوب التوصيل",
                         count: 1,
                       ),
-                      OrderstypeNew()
+                      const OrderstypeNew()
                     ],
                   ),
-                  const Spacer(),
                   Image.asset('assets/svg/carouselPlaceholder.png'),
                   const Spacer(),
                   glassyContainer(

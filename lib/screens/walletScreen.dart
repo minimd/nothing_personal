@@ -181,7 +181,7 @@ class WalletScreen extends StatelessWidget {
                   Row(
                     children: [
                       TextLama(
-                        text: "التحاسب",
+                        text: "التحاسب   ",
                         fontWeight: FontWeight.w500,
                       ),
                       Expanded(
